@@ -5,9 +5,28 @@
         private const int N = 50;
         private int[] liczby = new int[N+1];
         private int szukana;
-        public Wyszukiwanie()
+        public Wyszukiwanie(int szukana = 0)
         {
+            this.szukana = szukana;
             generujDane();
+            int poz = wyszukaj();
+            wypiszTablice();
+            if (poz == N)
+                Console.WriteLine("element nie został znaleziny");
+            else
+                Console.WriteLine($"element jest na pozycji {poz}");
+        }
+        private void wypiszTablice()
+        {
+            for(int i = 0; i < N; i++)          
+                Console.Write($"{liczby[i]}, ");
+            Console.WriteLine();
+        }
+        private int wyszukaj()
+        {
+            for(int i = 0; ; i++) 
+                if (liczby[i] == szukana)
+                    return i;
         }
         private void generujDane()
         {
@@ -22,7 +41,10 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Console.Write("podaj liczbę w zakresie 1 - 100: ");
+            //nt x = int.Parse(Console.ReadLine());
+            int x = 5; 
+            Wyszukiwanie w = new Wyszukiwanie(x);
         }
     }
 }
